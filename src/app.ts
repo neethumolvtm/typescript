@@ -192,7 +192,7 @@ console.log(pizaSize);
 
 type pizaSize1 = 'small' | 'large' | 'medium';
 type callBack = (size: pizaSize1) => void;
-const data1: callBack=(x) => pizaSize = x;
+const data1: callBack = (x) => pizaSize = x;
 data1('medium');
 console.log(pizaSize);
 
@@ -200,9 +200,36 @@ type Pizza = { name: string; toppings: number };
 const pizza123: Pizza = { name: 'Blazing Inferno', toppings: 5 };
 const serialized = JSON.stringify(pizza123);
 function getNameFromJSON(obj: string) {
-  // return (<Pizza>JSON.parse(obj)).name;
-  return (JSON.parse(obj) as Pizza).name;
+    // return (<Pizza>JSON.parse(obj)).name;
+    return (JSON.parse(obj) as Pizza).name;
 }
-
 //Type Assertions
 console.log(getNameFromJSON(serialized));
+
+
+
+//interfaces:Define the the structure or shape of the object
+interface Size1 { size: number[]; }
+interface Chicken extends Size1 {
+    name: string;
+    quality?: number;//optional
+    [key: number]: string;
+
+}
+var chicken: Chicken;
+function createChicken(name: string, size: number[]): Chicken {
+    return { name, size }
+}
+//console.log(createChicken('broilor', [1, 2]))
+chicken = createChicken('broilor', [1, 2]);
+chicken.quality = 1;
+chicken[1] = "Brokoli"//index signature
+console.log(chicken);
+
+
+
+//static
+class StaticClass {
+    static staticData = ['n', 'l/', 'h'];
+}
+console.log(StaticClass.staticData);
